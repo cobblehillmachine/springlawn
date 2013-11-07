@@ -387,13 +387,27 @@ function my_login_logo() { ?>
 <?php }
 add_action( 'login_enqueue_scripts', 'my_login_logo' );
 
-remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
-remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
-function my_theme_wrapper_start() {
-  echo '<section id="main">';
-}
+//remove_filter ('the_content',  'wpautop');
+//remove_filter ('the_excerpt', 'wpautop');
 
-function my_theme_wrapper_end() {
-  echo '</section>';
+add_action( 'init', 'create_post_type' );
+function create_post_type() {
+
+	$args1 = array(
+		'labels' => array(
+			'name' => __( 'Members' ),
+			'singular_name' => __( 'Member' )
+		),
+		'public' => true,
+		//'has_archive' => true,
+		'rewrite' => array('slug' => 'members'),
+		'supports' => array( 'title', 'editor' )
+	);
+  
+  	register_post_type('Members', $args1);
+	//register_taxonomy_for_object_type('post_tag', 'offerings');
+	//register_taxonomy_for_object_type('category', 'products');
+
+	// register_taxonomy_for_object_type('post_tag', 'page');
+	//register_taxonomy_for_object_type('category', 'page');
 }
-add_theme_support( 'woocommerce' );

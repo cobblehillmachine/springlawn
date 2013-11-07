@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	$('#header, #main-wrap, #footer').fadeIn();
+	setInputFieldFunctions();
 
 });
 

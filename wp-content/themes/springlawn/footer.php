@@ -13,6 +13,8 @@
 	
 		</div>
 		<div id="footer">
+			<div id="copyright">&copy; 2013 BERKSHIRE LEGACY CIRCLE, ALL RIGHTS RESERVED</div>
+			<li><a href="mailto:INFO@BERKSHIRELEGACYCIRCLE.COM">INFO@BERKSHIRELEGACYCIRCLE.COM</a></li>
 		</div>
 <?php wp_footer(); ?>
 	</div>
