@@ -26,7 +26,7 @@ h3 {font-size:17px; text-transform:uppercase; color:#4a4846; width:100%; text-al
 
 /*FONTS*/
 .museo-slab-300 {font-family: "museo-slab",serif; font-style: normal; font-weight: 300; letter-spacing:0;}
-.museo-slab-500, .text strong {font-family: "museo-slab",serif; font-style: normal; font-weight: 500; letter-spacing:0;}
+.museo-slab-500, .text, .text strong, #contacts .member-cont .contact-info {font-family: "museo-slab",serif; font-style: normal; font-weight: 500; letter-spacing:0;}
 
 /*HEADER*/
 #header {margin-top:20px;}
@@ -42,7 +42,7 @@ h3 {font-size:17px; text-transform:uppercase; color:#4a4846; width:100%; text-al
 .tagline {float:left; width:100%; font-size:18px; text-transform:uppercase; color:#4a4846; text-align:center; margin:10px 0 25px;}
 .excerpt {float:left; width:100%; text-align:center; color:#566685; text-transform:uppercase; font-size:33px; line-height:45px; margin-bottom:35px;}
 .image {float:left; margin-left:75px;}
-.text {float:left; width:525px; margin-left:35px; font-size:15px; color:#786752;}
+.text {float:left; width:525px; margin-left:35px; font-size:15px; color:#786752; line-height:24px;}
 .text strong {float:left; color:#4a4745; font-size:20px;}
 .text li {margin-left:15px;}
 .brown-cont {background:#4a4745; padding:45px 80px; margin:70px 0 55px 0; }
@@ -58,6 +58,10 @@ h3 {font-size:17px; text-transform:uppercase; color:#4a4846; width:100%; text-al
 #contact-form form input[type="text"], #contact-form form input[type="email"] {background:#e4e4e4; width:441px; text-transform:uppercase; font-size:16px; padding-left:20px;}
 #contact-form form input[type="text"] {margin-right:12px;}
 #contact-form form input[type="submit"] {width:100%; margin-top:12px;}
+#contact-form .wpcf7-not-valid-tip {display:none !important;}
+#contact-form .wpcf7-response-output {float:left; width:100%; border:none; margin:-30px 0 0 0; padding:25px 0; text-align:center; font-size:16px; text-transform:uppercase; color:#f2f3f4; background:#718653;}
+#contact-form .wpcf7-validation-errors {background:#d05037;}
 #contacts {background:url(../images/contacts-bg.png) no-repeat center 35px; min-height:80px; width:900px; margin-left:170px;}
 #contacts .member-cont {float:left; width:50%; text-align:center; color:#786752;}
 #contacts .member-cont a {color:#786752;}
+
