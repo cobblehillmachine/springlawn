@@ -11,7 +11,7 @@
 		<div id="signup-cont" class="small-cont"><?php get_sidebar(); ?></div>
 		<div id="brochure-cont" class="small-cont">
 			<h3>want to learn more?</h3>
-			<a class="button" href="#"><span>view our brochure</span></a>
+			<a class="button" href="/brochure.pdf" target="_blank"><span>view our brochure</span></a>
 		</div>
 	</div>
 	<?php endwhile; ?>
