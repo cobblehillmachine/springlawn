@@ -85,13 +85,15 @@
 </head>
 
 <body <?php body_class(); ?> id="<?php echo  strtolower(str_replace(' ','-',get_the_title())); ?>">
-	<div class="mid-cont">
 		<div id="header">
-			<img id="banner" src="<?php echo get_template_directory_uri(); ?>/images/banner.jpg" />
 			<a id="logo" href="/"></a>
 			<div id="nav">
 					<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 			</div>
 		</div>
 		<div id="main-wrap">
+			<?php if(is_front_page()) {?>
+				<?php } else { ?>
+				<div class="mid-cont">
+				<?php } ?>
 

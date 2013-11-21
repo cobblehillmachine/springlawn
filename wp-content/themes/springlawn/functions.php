@@ -405,9 +405,32 @@ function create_post_type() {
 	);
   
   	register_post_type('Members', $args1);
+
+	$args2 = array(
+		'labels' => array(
+			'name' => __( 'Home CTAs' ),
+			'singular_name' => __( 'Home CTA' )
+		),
+		'public' => true,
+		//'has_archive' => true,
+		'rewrite' => array('slug' => ''),
+		'supports' => array( 'title', 'editor', 'thumbnail' )
+	);
+  
+  	register_post_type('Home CTAs', $args2);
 	//register_taxonomy_for_object_type('post_tag', 'offerings');
 	//register_taxonomy_for_object_type('category', 'products');
 
-	// register_taxonomy_for_object_type('post_tag', 'page');
-	//register_taxonomy_for_object_type('category', 'page');
+
+}
+
+function the_post_thumbnail_caption() {
+  global $post;
+
+  $thumbnail_id    = get_post_thumbnail_id($post->ID);
+  $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+
+  if ($thumbnail_image && isset($thumbnail_image[0])) {
+    echo '<span>'.$thumbnail_image[0]->post_excerpt.'</span>';
+  }
 }

@@ -1,6 +1,9 @@
 $(document).ready(function() {
 	$('#header, #main-wrap, #footer').fadeIn();
 	setInputFieldFunctions();
+	$('.lifestyle-menu li a').each(function() {
+		$(this).after('<span class="arrow">d</span>');
+	});
 
 });
 
