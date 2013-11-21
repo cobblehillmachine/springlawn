@@ -22,6 +22,7 @@
 				<li><a href="#" target="_blank">JOIN OUR NEWSLETTER</a></li>
 			</div>
 		</div>
+		<div id="overlay"></div>
 <?php wp_footer(); ?>
 </body>
 </html>

@@ -1,12 +1,12 @@
-body {margin:0; padding:0; width:100%; min-width:1150px; font:normal 15px "museo-slab"; font-weight: 300; padding:20px; color:#786752;}
+body {margin:0; padding:0; width:100%; min-width:1130px; font:normal 15px "museo-slab"; font-weight: 300; padding:20px; color:#786752;}
 a {text-decoration:none; color:#fff; outline:0;}
 a img {border:0;}
 ul {list-style:none; padding:0; margin:0;}
 input {-webkit-appearance:none;}
-p {margin:0 0 25px 0; display:inline-block; line-height:25px;}
+p {margin:0 0 25px 0; display:inline-block; line-height:25px; width:100%;}
 ul, li, ol, fieldset {list-style:disc; padding:0; margin:0; border:none;}
 ul.menu li {list-style:none;}
-input, select, textarea {-webkit-appearance:none; -webkit-border-radius:0px; border:0; background:#fff; height:65px; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; padding-left:10px;}
+input, select, textarea {-webkit-appearance:none; -webkit-border-radius:0px; border:0; background:#fff; height:65px; padding-left:10px;}
 input[type="checkbox"] {-webkit-appearance:checkbox;}
 input[type="radio"] {-webkit-appearance:radio;}
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
@@ -15,36 +15,42 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appe
 ::-moz-placeholder {color: #bbb9b6; opacity:1; filter:alpha(opacity=100);}
 :-ms-input-placeholder {color: #bbb9b6; opacity:1; filter:alpha(opacity=100);}
 img {vertical-align:top; width:100%; height:auto;}
+body, div, span, a, ul, li, input, ol, select, textarea, fieldset, p {box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
 
 /*REUSABLE*/
-body, #contacts .member-cont, .box, .col-right, .right .contact-info {box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
 .mid-cont {position:relative; width:1080px; margin:auto;}
 .hidden, #header, #main-wrap, #footer {display:none;}
 .last, #cta-cont .cta:last-child {margin-right:0;}
 .cont, #header, #main-wrap, #footer, #banner, #nav, .brown-cont, #contact-form, #contacts, .box {float:left; width:100%;}
-#main-wrap {background:#f2f3f4; padding:55px 0 15px 0;}
-input[type="submit"], .button {background:#566685; font-size:16px; text-transform:uppercase; color:#f2f3f4; cursor:pointer; float:left; text-align:center; padding:15px 0;}
-input[type="submit"]:hover, .button:hover {background:#615e5c;}
+#main-wrap {background:#f2f3f4; padding:55px 0 55px 0;}
+input[type="submit"], .button { background:#566685; font-size:16px; text-transform:uppercase; color:#f2f3f4; cursor:pointer; float:left; text-align:center; padding:15px 0;}
+input[type="submit"]:hover, .button:hover, .col-right a:hover, .link-button:hover {background:#615e5c;}
 h3 {font-size:18px; text-transform:uppercase; color:#4a4846; width:100%; text-align:center;}
 strong {float:left; color:#4a4745; font-size:20px;}
 .tagline {font-size:31px; color:#566685; float:left; width:100%; text-align:center; margin-bottom:50px;}
-.col-left {float:left; width:438px;}
-.col-left .tagline {text-align:left; margin:0; padding:50px 0; border-bottom:1px solid #bdbab7;}
-.col-right {border-left:1px solid #bdbab7; float:left; width:642px; padding:50px 0 50px 22px;}
+.col-left {float:left; width:438px; border-right:1px solid #bdbab7;}
+.col-left .tagline {text-align:left; margin:0; padding:50px 0; border-bottom:1px solid #bdbab7; }
+.col-right {float:left; width:642px; padding:50px 0 50px 22px;}
+.col-right a, .link-button {font-size:17px; background:#566685; color:#f2f3f4; padding:15px 0; width:410px; float:left; text-align:center;}
 .lifestyle-menu {padding-top:40px;}
 .lifestyle-menu li {float:left; width:100%; margin-bottom:35px;}
 .lifestyle-menu li a, .lifestyle-menu li .arrow {font-size:16px; color:#566685;}
 .lifestyle-menu li:hover a, .lifestyle-menu li:hover .arrow, .lifestyle-menu .current-menu-item a, .lifestyle-menu .current-menu-item .arrow {color:#615e5c;}
 .arrow {font:normal 16px "pointersregular"; text-transform:lowercase; margin-left:10px;}
-.box {padding-top:50px; border-top:1px solid #bdbab7;}
+.box {padding:50px 0 45px 0; border-top:1px solid #bdbab7;}
 .left {float:left; width:505px;}
 .right {float:right; width:528px;}
+#overlay {position:absolute; top:0; left:0; width:100%; background:#fff; opacity:.6; filter:alpha(opacity=60); z-index:999; display:none;}
+.popup {color:#f2f3f4; background:#615e5c; font-size:13px; padding:40px 65px; line-height:25px; position:fixed; text-align:center; width:710px; z-index:9999; display:none;}
+.popup p {float:left; width:50%;}
+.popup strong {font-size:18px; color:#f2f3f4; float:left; width:100%; text-align:center; border-bottom:1px solid #aea9a4; padding-bottom:22px; margin-bottom:25px;}
+.popup .close {position:absolute; font-size:32px; top:20px; right:12px; cursor:pointer;}
 
 /*FONTS*/
 .museo-slab-300, #contacts .contact-info {font-family: "museo-slab",serif; font-style: normal; font-weight: 300; letter-spacing:0;}
-.museo-slab-500, .text, strong {font-family: "museo-slab",serif; font-style: normal; font-weight: 500; letter-spacing:0;}
-.museo-sans-300, #header #nav li a {font-family: "museo-sans",sans-serif; font-style: normal; font-weight: 300;}
-.museo-sans-500, .tagline, .cta-title, #cta-cont .learn-more, h3, .lifestyle-menu li a, input[type="submit"], .button {font-family: "museo-sans",sans-serif; font-style: normal; font-weight:500; letter-spacing:1.5px; text-transform:uppercase;}
+.museo-slab-500, .text, strong, .col-right a, .link-button {font-family: "museo-slab",serif; font-style: normal; font-weight: 500; letter-spacing:0;}
+.museo-sans-300, #header #nav li a, .popup .close {font-family: "museo-sans",sans-serif; font-style: normal; font-weight: 300;}
+.museo-sans-500, .tagline, .cta-title, #cta-cont .learn-more, h3, .lifestyle-menu li a, input[type="submit"], .button, #benefits strong, .popup strong {font-family: "museo-sans",sans-serif; font-style: normal; font-weight:500; letter-spacing:1.5px; text-transform:uppercase;}
 @font-face {font-family: 'pointersregular'; src: url(../fonts/pointers-webfont.eot); src: url(../fonts/pointers-webfont.eot?#iefix) format('embedded-opentype'), url(../fonts/pointers-webfont.woff) format('woff'), url(../fonts/pointers-webfont.ttf) format('truetype'), url(../fonts/pointers-webfont.svg#pointersregular) format('svg'); font-weight: normal;font-style: normal;}
 
 /*HEADER*/
@@ -87,6 +93,31 @@ filter: gray;filter: grayscale(100%); -webkit-filter: grayscale(100%); -moz-filt
 .right .contact-info {background:#d9d8d7; float:left; width:100%; padding:15px 24px; margin-top:40px;}
 .right .contact-info strong {margin-top:15px;}
 .right .contact-info .button {width:175px; margin-left:24px;}
+#benefits {margin:60px 0 0 0; color:#f2f3f4; background:#615e5c; font-size:14px; padding:40px 65px; line-height:25px;}
+#benefits strong {font-size:15px; color:#f2f3f4; float:left; width:100%; text-align:center; border-bottom:1px solid #aea9a4; padding-bottom:22px;}
+#benefits ul:nth-child(2) {float:left; width:410px; padding-left:45px;}
+#benefits ul:last-child {float:right; width:405px;}
+#benefits ul li {margin-bottom:18px;}
+
+/*LENOX AREA*/
+#stock-images {padding-bottom:0;}
+#stock-images img {width:410px;}
+.metaslider .flex-control-paging li a {background:#fff; width:8px; height:8px; margin:0 3px; color:transparent;}
+.metaslider .flex-control-paging li a.flex-active {background:#bbb9b6;}
+.metaslider .flex-control-nav {text-align:right; z-index:100;}
+.metaslider .slides .caption-wrap {background:none; color:#786752; font-size:12px; font-style:italic; bottom:-45px; z-index:0;}
+
+
+/*CONTACT*/
+#contact-form {margin:58px 0 0 170px; width:900px; text-transform:uppercase;}
+#contact-form .contact-title {font-size:34px; color:#566685; width:100%; text-align:center;}
+#contact-form form {float:left; width:100%; border:1px solid #c1bdba; border-right:none; border-left:none; padding:35px 0 15px 0; margin:35px 0 60px 0;}
+#contact-form form input[type="text"], #contact-form form input[type="email"] {background:#e4e4e4; width:441px; text-transform:uppercase; font-size:16px; padding-left:20px;}
+#contact-form form input[type="text"] {margin-right:12px;}
+#contact-form form input[type="submit"] {width:100%; margin-top:12px;}
+#contact-form .wpcf7-not-valid-tip {display:none !important;}
+#contact-form .wpcf7-response-output {float:left; width:100%; border:none; margin:-30px 0 0 0; padding:25px 0; text-align:center; font-size:16px; text-transform:uppercase; color:#f2f3f4; background:#718653;}
+#contact-form .wpcf7-validation-errors {background:#d05037;}
 
 
 /*SPLASH*/
@@ -99,14 +130,7 @@ filter: gray;filter: grayscale(100%); -webkit-filter: grayscale(100%); -moz-filt
 #signup-cont input[type="submit"] {width:115px;}
 #brochure-cont .button {width:445px; height:65px; display:table; background:url(../images/button-arrow.png) no-repeat #566685 332px center;}
 #brochure-cont .button span {display:table-cell; vertical-align:middle; height:65px;}
-#contact-form {margin:58px 0 0 170px; width:900px; text-transform:uppercase;}
-#contact-form .contact-title {font-size:34px; color:#566685; width:100%; text-align:center;}
-#contact-form form {float:left; width:100%; border:1px solid #c1bdba; border-right:none; border-left:none; padding:35px 0 15px 0; margin:35px 0 60px 0;}
-#contact-form form input[type="text"], #contact-form form input[type="email"] {background:#e4e4e4; width:441px; text-transform:uppercase; font-size:16px; padding-left:20px;}
-#contact-form form input[type="text"] {margin-right:12px;}
-#contact-form form input[type="submit"] {width:100%; margin-top:12px;}
-#contact-form .wpcf7-not-valid-tip {display:none !important;}
-#contact-form .wpcf7-response-output {float:left; width:100%; border:none; margin:-30px 0 0 0; padding:25px 0; text-align:center; font-size:16px; text-transform:uppercase; color:#f2f3f4; background:#718653;}
-#contact-form .wpcf7-validation-errors {background:#d05037;}*/
+
+*/
 
 
