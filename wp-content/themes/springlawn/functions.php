@@ -418,6 +418,20 @@ function create_post_type() {
 	);
   
   	register_post_type('Home CTAs', $args2);
+
+	
+	$args3 = array(
+		'labels' => array(
+			'name' => __( 'Board Members' ),
+			'singular_name' => __( 'Board Member' )
+		),
+		'public' => true,
+		//'has_archive' => true,
+		'rewrite' => array('slug' => 'board-members'),
+		'supports' => array( 'title', 'editor' )
+	);
+  
+  	register_post_type('Board Members', $args3);
 	//register_taxonomy_for_object_type('post_tag', 'offerings');
 	//register_taxonomy_for_object_type('category', 'products');
 
@@ -443,14 +457,14 @@ function wpcf7_send_to_mailchimp($cfdata) {
  $formdata = $cfdata->posted_data;
  // Opt-in field checked?
  if ( $formdata['mailchimp-optin'] ) {
- $names = explode(' ',trim($formdata['your-name']));
- $firstName = $names[0];
- $lastName = '';
+ $names = explode(' ',trim($formdata['firstname']));
+ $firstName = $formdata['firstname'];
+ $lastName = $formdata['lastname'];
  if (count($names)>1){
  // more than one word in name field
  $lastName = array_pop($names);
  }
-$send_this_email = $formdata['your-email'];
+$send_this_email = $formdata['email'];
  $mergeVars = array(
  'FNAME'=>$firstName,
  'LNAME'=>$lastName
@@ -458,7 +472,7 @@ $send_this_email = $formdata['your-email'];
  // MCAPI.class.php needs to be in theme/includes folder
  require_once('includes/MCAPI.class.php');
  // grab an API Key from http://admin.mailchimp.com/account/api/
- $api = new MCAPI('669f1300891510c4c73769dbc2a1eb4c-us7');
+ $api = new MCAPI('e10b98417d581dc7da08e4e90f65c4dd-us7');
  // grab your List's Unique Id by going to http://admin.mailchimp.com/lists/
  // Click the "settings" link for the list - the Unique Id is at the bottom of that page.
  $list_id = 'fc71b3eae1';

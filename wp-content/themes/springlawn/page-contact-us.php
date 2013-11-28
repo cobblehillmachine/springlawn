@@ -5,7 +5,16 @@
 		<div class="col-left">
 			<div class="tagline"><?php echo get_post_meta($post->ID, 'tagline', true); ?></div>
 
-			<div class="cont box">
+			<div id="contacts-info"class="cont box">
+				
+					<?php query_posts(array('post_type' => 'Members',  'order' => 'asc')); ?>
+					<?php while ( have_posts() ) : the_post();  ?>
+						<div class="member-cont">
+							<h3><?php the_title(); ?></h3>
+							<div class="contact-info"><?php the_content(); ?></div>
+						</div>
+					<?php endwhile; wp_reset_query(); ?>
+				
 
 			</div>
 

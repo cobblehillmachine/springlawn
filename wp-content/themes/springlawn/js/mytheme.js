@@ -9,6 +9,12 @@ $(document).ready(function() {
 	$('#the-lenox-area .col-right a:first-child').attr('onclick', 'showOutdoor();');
 	$('#the-lenox-area .col-right p:last-child a').attr('onclick', 'showAttractions();');
 	centerItem('.popup',710, 435);
+	$('#tp_thumbs img:first-child').addClass('active'); 
+	$('#tp_thumbs img').click(function() { 
+	  $('#tp_thumbs img').removeClass('active'); 
+	  $(this).addClass('active'); 
+	});
+	selectMember();
 });
 
 $(window).resize(function() {
@@ -60,3 +66,18 @@ function closePopup() {
 	$('#overlay, .popup').fadeOut('slow');
 }
 
+function selectMember() {
+	$('#board .member-cont').click(function() { 
+	  $('#board .member-cont').removeClass('selected'); 
+	  $(this).addClass('selected'); 
+	});
+	// $('#board .member-cont').on({
+	// 	click: function(){$(this).children('.contact-info').slideToggle(function() {
+	// 	$(this).addClass('selected');
+	// 		}, function() {
+	// 	//$(this).removeClass('selected');
+	// 		}); 
+	// 	}
+	// });
+
+}
