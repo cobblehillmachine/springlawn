@@ -67,17 +67,15 @@ function closePopup() {
 }
 
 function selectMember() {
-	$('#board .member-cont').click(function() { 
-	  $('#board .member-cont').removeClass('selected'); 
-	  $(this).addClass('selected'); 
+	$('#board .member-tab').each(function() {
+		$(this).click(function() {
+			$(this).siblings('.contact-info').slideToggle();
+		});
+		$(this).toggle(function() {
+			$(this).parents('.member-cont').addClass('selected');
+		}, function() {
+			$(this).parents('.member-cont').removeClass('selected');
+		});
 	});
-	// $('#board .member-cont').on({
-	// 	click: function(){$(this).children('.contact-info').slideToggle(function() {
-	// 	$(this).addClass('selected');
-	// 		}, function() {
-	// 	//$(this).removeClass('selected');
-	// 		}); 
-	// 	}
-	// });
 
 }

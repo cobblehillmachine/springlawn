@@ -147,7 +147,7 @@ img.ajax-loader {width:16px;}
 #board .member-cont .member-tab strong {text-transform:uppercase; margin-right:30px;}
 #board .member-cont .member-tab span {font-size:18px; color:#566685; font-style:italic;}
 #board .member-cont .contact-info {padding:40px 35px 40px 30px; border:2px solid #d9d8d7; border-top:none; margin-top:-4px; display:none;}
-#board .member-cont.selected .contact-info {display:block;}
+/*#board .member-cont.selected .contact-info {display:block;}*/
 
 
 /*SPLASH*/
