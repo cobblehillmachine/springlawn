@@ -19,7 +19,7 @@
 			<div class="mid-cont">
 				<div id="copyright">&copy; 2013 BERKSHIRE LEGACY CIRCLE, ALL RIGHTS RESERVED</div>
 				<li><a href="mailto:INFO@BERKSHIRELEGACYCIRCLE.COM" target="_blank">INFO@BERKSHIRELEGACYCIRCLE.COM</a></li>
-				<li><a href="#" target="_blank">JOIN OUR NEWSLETTER</a></li>
+				<li><a href="http://eepurl.com/IpYCv" target="_blank">JOIN OUR NEWSLETTER</a></li>
 			</div>
 		</div>
 		<div id="overlay"></div>
