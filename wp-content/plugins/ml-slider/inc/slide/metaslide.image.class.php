@@ -53,21 +53,6 @@ class MetaImageSlide extends MetaSlide {
     }
 
     /**
-     *
-     */
-    public function slide_exists_in_slideshow($slider_id, $slide_id) {
-        return has_term("{$slider_id}", 'ml-slider', $slide_id);
-    }
-
-    /**
-     *
-     */
-    public function slide_is_unassigned_or_image_slide($slider_id, $slide_id) {
-        $type = get_post_meta($slide_id, 'ml-slider_type', true);
-        return !strlen($type) || $type == 'image';
-    }
-
-    /**
      * Create a new slide and echo the admin HTML
      */
     public function ajax_resize_slide() {
@@ -106,11 +91,9 @@ class MetaImageSlide extends MetaSlide {
         // get some slide settings
         $imageHelper = new MetaSliderImageHelper($this->slide->ID, 150, 150, 'false', $this->use_wp_image_editor());
         $thumb       = $imageHelper->get_image_url();
-
-        $full        = wp_get_attachment_image_src($this->slide->ID);
-        $filename    = basename($full[0]);
-
         $url         = get_post_meta($this->slide->ID, 'ml-slider_url', true);
+        $title       = get_post_meta($this->slide->ID, 'ml-slider_title', true);
+        $alt         = get_post_meta($this->slide->ID, '_wp_attachment_image_alt', true);
         $target      = get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? 'checked=checked' : '';
         $caption     = htmlentities($this->slide->post_excerpt, ENT_QUOTES, 'UTF-8');
 
@@ -118,25 +101,40 @@ class MetaImageSlide extends MetaSlide {
         $str_caption    = __("Caption", 'metaslider');
         $str_new_window = __("New Window", 'metaslider');
         $str_url        = __("URL", 'metaslider');
+        $str_label      = __("Image Slide", "metaslider");
+
+        $slide_label = apply_filters("metaslider_image_slide_label", $str_label, $this->slide, $this->settings);
 
         // slide row HTML
         $row  = "<tr class='slide image flex responsive nivo coin'>";
         $row .= "    <td class='col-1'>";
         $row .= "        <div class='thumb' style='background-image: url({$thumb})'>";
-        $row .= "            <a class='delete-slide confirm' href='?page=metaslider&id={$this->slider->ID}&deleteSlide={$this->slide->ID}'>x</a>";
-        $row .= "            <span class='slide-details'>Image {$filename}</span>";
+        $row .= "            <a class='delete-slide confirm' href='?page=metaslider&amp;id={$this->slider->ID}&amp;deleteSlide={$this->slide->ID}'>x</a>";
+        $row .= "            <span class='slide-details'>" . $slide_label . "</span>";
         $row .= "        </div>";
         $row .= "    </td>";
         $row .= "    <td class='col-2'>";
-
+        $row .= "        <ul class='tabs'>";
+        $row .= "            <li class='selected' rel='tab-1'>" . __("General", "metaslider") . "</li>";
+        $row .= "            <li rel='tab-2'>" . __("SEO", "metaslider") . "</li>";
+        $row .= "        </ul>";
+        $row .= "        <div class='tabs-content'>"; 
+        $row .= "            <div class='tab tab-1'>";
         if (!$this->is_valid_image()) {
             $row .= "<div class='warning'>" . __('Warning: Image data does not exist. Please re-upload the image.') . "</div>";
         }
-
-        $row .= "        <textarea name='attachment[{$this->slide->ID}][post_excerpt]' placeholder='{$str_caption}'>{$caption}</textarea>";
-        $row .= "        <input class='url' type='text' name='attachment[{$this->slide->ID}][url]' placeholder='{$str_url}' value='{$url}' />";
-        $row .= "        <div class='new_window'>";
-        $row .= "            <label>{$str_new_window}<input type='checkbox' name='attachment[{$this->slide->ID}][new_window]' {$target} /></label>";
+        $row .= "                <textarea name='attachment[{$this->slide->ID}][post_excerpt]' placeholder='{$str_caption}'>{$caption}</textarea>";
+        $row .= "                <input class='url' type='text' name='attachment[{$this->slide->ID}][url]' placeholder='{$str_url}' value='{$url}' />";
+        $row .= "                <div class='new_window'>";
+        $row .= "                    <label>{$str_new_window}<input type='checkbox' name='attachment[{$this->slide->ID}][new_window]' {$target} /></label>";
+        $row .= "                </div>";
+        $row .= "            </div>";
+        $row .= "            <div class='tab tab-2' style='display: none;'>";
+        $row .= "                <div class='row'><label>" . __("Image Title Text", "metaslider") . "</label></div>";
+        $row .= "                <div class='row'><input type='text' size='50' name='attachment[{$this->slide->ID}][title]' value='{$title}' /></div>";
+        $row .= "                <div class='row'><label>" . __("Image Alt Text", "metaslider") . "</label></div>";
+        $row .= "                <div class='row'><input type='text' size='50' name='attachment[{$this->slide->ID}][alt]' value='{$alt}' /></div>";
+        $row .= "            </div>";
         $row .= "        </div>";
         $row .= "        <input type='hidden' name='attachment[{$this->slide->ID}][type]' value='image' />";
         $row .= "        <input type='hidden' class='menu_order' name='attachment[{$this->slide->ID}][menu_order]' value='{$this->slide->menu_order}' />";
@@ -155,17 +153,8 @@ class MetaImageSlide extends MetaSlide {
      * @return bool, true if metadata and size exists.
      */
     public function is_valid_image() {
-        $image_attributes = wp_get_attachment_image_src($this->slide->ID, 'full');
-
-        if (!is_array($image_attributes)) {
-            return false;
-        }
-        
-        if ($image_attributes[1] > 0 && $image_attributes[1] > 0) {
-            return true;
-        }
-        
-        return false;
+        $meta = wp_get_attachment_metadata($this->slide->ID);
+        return isset($meta['width'], $meta['height']);
     }
 
     /**
@@ -199,6 +188,7 @@ class MetaImageSlide extends MetaSlide {
         $slide = array(
             'id' => $this->slide->ID,
             'url' => __(get_post_meta($this->slide->ID, 'ml-slider_url', true)),
+            'title' => __(get_post_meta($this->slide->ID, 'ml-slider_title', true)),
             'target' => get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? '_blank' : '_self', 
             'src' => $thumb,
             'thumb' => $thumb, // backwards compatibility with Vantage
@@ -234,47 +224,6 @@ class MetaImageSlide extends MetaSlide {
         }
     }
 
-
-    /**
-     * Build image HTML
-     * 
-     * @param array $attributes
-     * @return string image HTML
-     */
-    private function build_image_tag($attributes) {
-        $html = "<img";
-
-        foreach ($attributes as $att => $val) {
-            if (strlen($val)) {
-                $html .= " " . $att . '="' . $val . '"';
-            }
-        }
-
-        $html .= " />";
-
-        return $html;
-    }
-
-    /**
-     * Build image HTML
-     * 
-     * @param array $attributes
-     * @return string image HTML
-     */
-    private function build_anchor_tag($attributes, $content) {
-        $html = "<a";
-
-        foreach ($attributes as $att => $val) {
-            if (strlen($val)) {
-                $html .= " " . $att . '="' . $val . '"';
-            }
-        }
-
-        $html .= ">" . $content . "</a>";
-
-        return $html;
-    }
-
     /**
      * Generate nivo slider markup
      * 
@@ -285,8 +234,9 @@ class MetaImageSlide extends MetaSlide {
             'src' => $slide['src'],
             'height' => $slide['height'],
             'width' => $slide['width'],
-            'title' => htmlentities($slide['caption_raw'], ENT_QUOTES, 'UTF-8'),
+            'data-title' => htmlentities($slide['caption_raw'], ENT_QUOTES, 'UTF-8'),
             'data-thumb' => $slide['data-thumb'],
+            'title' => $slide['title'],
             'alt' => $slide['alt'],
             'rel' => $slide['rel'],
             'class' => $slide['class']
@@ -318,7 +268,8 @@ class MetaImageSlide extends MetaSlide {
             'width' => $slide['width'],
             'alt' => $slide['alt'],
             'rel' => $slide['rel'],
-            'class' => $slide['class']
+            'class' => $slide['class'],
+            'title' => $slide['title']
         ), $slide, $this->slider->ID);
 
         $html = $this->build_image_tag($attributes);
@@ -356,7 +307,9 @@ class MetaImageSlide extends MetaSlide {
             'width' => $slide['width'],
             'alt' => $slide['alt'],
             'rel' => $slide['rel'],
-            'class' => $slide['class']
+            'class' => $slide['class'],
+            'title' => $slide['title'],
+            'style' => 'display: none;'
         ), $slide, $this->slider->ID);
 
         $html = $this->build_image_tag($attributes);
@@ -386,7 +339,8 @@ class MetaImageSlide extends MetaSlide {
             'width' => $slide['width'],
             'alt' => $slide['alt'],
             'rel' => $slide['rel'],
-            'class' => $slide['class']
+            'class' => $slide['class'],
+            'title' => $slide['title']
         ), $slide, $this->slider->ID);
 
         $html = $this->build_image_tag($attributes);
@@ -395,7 +349,7 @@ class MetaImageSlide extends MetaSlide {
             $html .= '<div class="caption-wrap"><div class="caption">' . $slide['caption'] . '</div></div>';
         }
 
-        $anchor_attributes = apply_filters('metaslider_nivo_slider_anchor_attributes', array(
+        $anchor_attributes = apply_filters('metaslider_responsive_slider_anchor_attributes', array(
             'href' => $slide['url'],
             'target' => $slide['target']
         ), $slide, $this->slider->ID);
@@ -420,6 +374,12 @@ class MetaImageSlide extends MetaSlide {
 
         // store the URL as a meta field against the attachment
         $this->add_or_update_or_delete_meta($this->slide->ID, 'url', $fields['url']);
+
+        $this->add_or_update_or_delete_meta($this->slide->ID, 'title', $fields['title']);
+
+        if (isset($fields['alt'])) {
+        	update_post_meta($this->slide->ID, '_wp_attachment_image_alt', $fields['alt']);
+        }
 
         // store the 'new window' setting
         $new_window = isset($fields['new_window']) && $fields['new_window'] == 'on' ? 'true' : 'false';

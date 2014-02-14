@@ -432,6 +432,19 @@ function create_post_type() {
 	);
   
   	register_post_type('Board Members', $args3);
+
+	$args4 = array(
+		'labels' => array(
+			'name' => __( 'Investments' ),
+			'singular_name' => __( 'Investment' )
+		),
+		'public' => true,
+		//'has_archive' => true,
+		'rewrite' => array('slug' => 'investments'),
+		'supports' => array( 'title' )
+	);
+  
+  	register_post_type('Investments', $args4);
 	//register_taxonomy_for_object_type('post_tag', 'offerings');
 	//register_taxonomy_for_object_type('category', 'products');
 

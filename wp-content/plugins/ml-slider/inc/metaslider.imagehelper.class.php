@@ -166,7 +166,18 @@ class MetaSliderImageHelper {
             return $this->url;
         }
 
-        // source image size
+        // if the file exists, just return it without going any further
+        $dest_file_name = $this->get_destination_file_name(array(
+	        	'width' => $this->container_width, 
+	        	'height' => $this->container_height
+        	)
+        );
+
+        if (file_exists($dest_file_name)) {
+            return str_replace(basename($this->url), basename($dest_file_name), $this->url);
+        }
+
+        // file doesn't exist, detect required size
         $orig_size = $this->get_original_image_dimensions();
 
         // bail out if we can't find the image dimensions
@@ -216,13 +227,10 @@ class MetaSliderImageHelper {
         $size = array();
 
         // try and get the image size from metadata
-        if ($image_attributes = wp_get_attachment_image_src($this->id, 'full')) {
-            $size['width'] = $image_attributes[1];
-            $size['height'] = $image_attributes[2];
+        $meta = wp_get_attachment_metadata($this->id);
 
-            if ($size['width'] > 0 && $size['height'] > 0) {
-                return $size;
-            }
+        if (isset($meta['width'], $meta['height'])) {
+            return $meta;
         }
 
         if ($this->use_image_editor) {

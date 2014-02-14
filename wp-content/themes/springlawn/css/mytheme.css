@@ -58,7 +58,7 @@ h2 {font-size:20px; color:#4a4745;}
 #header {background:url(../images/banner.jpg) no-repeat; background-size:cover; height:375px; text-align:center;}
 #header #logo {display:inline-block; background:url(../images/logo.png) no-repeat; width:193px; height:193px; margin-top:68px;}
 #header #nav {float:left; width:100%; padding:22px 0 20px 0; background:#61708d; margin-top:45px;}
-#header #nav ul {display:inline-block; width:745px;}
+#header #nav ul {display:inline-block;}
 #header #nav li {float:left; margin-left:65px;}
 #header #nav li a {font-size:16px; text-transform:uppercase; color:#f2f3f4;}
 #header #nav li a:hover, #header #nav .current-menu-item a, #header #nav .current-page-ancestor a {color:#a8c4e0;}
@@ -149,18 +149,6 @@ img.ajax-loader {width:16px;}
 #board .member-cont .contact-info {padding:40px 35px 40px 30px; border:2px solid #d9d8d7; border-top:none; margin-top:-4px; display:none;}
 /*#board .member-cont.selected .contact-info {display:block;}*/
 
-
-/*SPLASH*/
-/*.tagline {float:left; width:100%; font-size:18px; text-transform:uppercase; color:#4a4846; text-align:center; margin:10px 0 25px;}
-.excerpt {float:left; width:100%; text-align:center; color:#566685; text-transform:uppercase; font-size:33px; line-height:45px; margin-bottom:35px;}
-.brown-cont {background:#4a4745; padding:45px 80px; margin:70px 0 55px 0; }
-.small-cont {float:left; width:530px; background:#9e9d9d; padding:45px 40px; height:215px; text-align:center;}
-.brown-cont .small-cont:first-child {margin-right:20px;}
-#signup-cont input[type="text"] {width:330px; float:left;}
-#signup-cont input[type="submit"] {width:115px;}
-#brochure-cont .button {width:445px; height:65px; display:table; background:url(../images/button-arrow.png) no-repeat #566685 332px center;}
-#brochure-cont .button span {display:table-cell; vertical-align:middle; height:65px;}
-
-*/
-
+/*VALUE PROPOSITION*/
+.left-img {padding:25px 25px 0 0;}
 
